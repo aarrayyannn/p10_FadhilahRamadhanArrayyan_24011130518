@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'core/app_theme.dart';
 import 'latihan61_provider/daftar_karyawan_page.dart';
 import 'latihan62_riverpod/penggajian_page.dart';
 import 'latihan63_bloc/login_bloc_page.dart';
@@ -42,9 +43,7 @@ class HomePage extends StatelessWidget {
                             width: 48,
                             height: 48,
                             decoration: BoxDecoration(
-                              gradient: const LinearGradient(
-                                colors: [Color(0xFF155EEF), Color(0xFF7F56D9)],
-                              ),
+                              color: AppColors.accentDark,
                               borderRadius: BorderRadius.circular(14),
                             ),
                             child: const Icon(
@@ -62,14 +61,14 @@ class HomePage extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w800,
-                                    color: Color(0xFF101828),
+                                    color: AppColors.ink,
                                   ),
                                 ),
                                 Text(
                                   'Manajemen Sumber Daya Manusia',
                                   style: TextStyle(
                                     fontSize: 12,
-                                    color: Color(0xFF667085),
+                                    color: AppColors.muted,
                                   ),
                                 ),
                               ],
@@ -81,7 +80,7 @@ class HomePage extends StatelessWidget {
                               vertical: 8,
                             ),
                             decoration: BoxDecoration(
-                              color: const Color(0xFFEAF2FF),
+                              color: AppColors.surfaceMuted,
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: const Row(
@@ -89,7 +88,7 @@ class HomePage extends StatelessWidget {
                               children: [
                                 CircleAvatar(
                                   radius: 14,
-                                  backgroundColor: Color(0xFF155EEF),
+                                  backgroundColor: AppColors.accent,
                                   child: Icon(
                                     Icons.person,
                                     size: 17,
@@ -101,7 +100,7 @@ class HomePage extends StatelessWidget {
                                   'Administrator',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
-                                    color: Color(0xFF344054),
+                                    color: AppColors.ink,
                                   ),
                                 ),
                               ],
@@ -114,15 +113,11 @@ class HomePage extends StatelessWidget {
                         width: double.infinity,
                         padding: EdgeInsets.all(wide ? 32 : 24),
                         decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [Color(0xFF155EEF), Color(0xFF6941C6)],
-                          ),
+                          color: AppColors.accentDark,
                           borderRadius: BorderRadius.circular(24),
                           boxShadow: const [
                             BoxShadow(
-                              color: Color(0x33155EEF),
+                              color: Color(0x29202428),
                               blurRadius: 24,
                               offset: Offset(0, 10),
                             ),
@@ -172,7 +167,7 @@ class HomePage extends StatelessWidget {
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w800,
-                          color: Color(0xFF101828),
+                          color: AppColors.ink,
                         ),
                       ),
                       const SizedBox(height: 14),
@@ -188,9 +183,9 @@ class HomePage extends StatelessWidget {
                         children: [
                           _FeatureCard(
                             icon: Icons.beach_access_rounded,
-                            iconColor: const Color(0xFF7F56D9),
-                            iconBackground: const Color(0xFFF4EBFF),
-                            title: 'fadhilah',
+                            iconColor: AppColors.accentDark,
+                            iconBackground: AppColors.surfaceMuted,
+                            title: 'Pengajuan Cuti',
                             subtitle: 'Kelola cuti karyawan',
                             tag: 'Provider',
                             onTap: () =>
@@ -198,8 +193,8 @@ class HomePage extends StatelessWidget {
                           ),
                           _FeatureCard(
                             icon: Icons.payments_rounded,
-                            iconColor: const Color(0xFF1570EF),
-                            iconBackground: const Color(0xFFEAF2FF),
+                            iconColor: AppColors.accent,
+                            iconBackground: AppColors.surfaceMuted,
                             title: 'Penggajian',
                             subtitle: 'Kelola data gaji karyawan',
                             tag: 'Riverpod',
@@ -207,8 +202,8 @@ class HomePage extends StatelessWidget {
                           ),
                           _FeatureCard(
                             icon: Icons.lock_person_rounded,
-                            iconColor: const Color(0xFF12B76A),
-                            iconBackground: const Color(0xFFECFDF3),
+                            iconColor: AppColors.muted,
+                            iconBackground: AppColors.surfaceMuted,
                             title: 'Login Sistem',
                             subtitle: 'Autentikasi pengguna',
                             tag: 'Cubit',
@@ -299,15 +294,13 @@ class _FeatureCardState extends State<_FeatureCard> {
           color: Colors.white,
           borderRadius: BorderRadius.circular(18),
           border: Border.all(
-            color: _hovered
-                ? widget.iconColor.withValues(alpha: 0.28)
-                : const Color(0xFFE4E7EC),
+            color: _hovered ? AppColors.accent : AppColors.border,
           ),
           boxShadow: [
             BoxShadow(
               color: _hovered
-                  ? widget.iconColor.withValues(alpha: 0.12)
-                  : const Color(0x08101828),
+                  ? const Color(0x18202428)
+                  : const Color(0x0C202428),
               blurRadius: _hovered ? 24 : 12,
               offset: const Offset(0, 8),
             ),
@@ -342,7 +335,7 @@ class _FeatureCardState extends State<_FeatureCard> {
                           vertical: 5,
                         ),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFF2F4F7),
+                          color: AppColors.surfaceMuted,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Text(
@@ -350,7 +343,7 @@ class _FeatureCardState extends State<_FeatureCard> {
                           style: const TextStyle(
                             fontSize: 11,
                             fontWeight: FontWeight.w800,
-                            color: Color(0xFF475467),
+                            color: AppColors.accent,
                           ),
                         ),
                       ),
@@ -362,7 +355,7 @@ class _FeatureCardState extends State<_FeatureCard> {
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w800,
-                      color: Color(0xFF101828),
+                      color: AppColors.ink,
                     ),
                   ),
                   const SizedBox(height: 4),
@@ -370,7 +363,7 @@ class _FeatureCardState extends State<_FeatureCard> {
                     widget.subtitle,
                     style: const TextStyle(
                       fontSize: 13,
-                      color: Color(0xFF667085),
+                      color: AppColors.muted,
                     ),
                   ),
                 ],

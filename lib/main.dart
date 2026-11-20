@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' show ProviderScope;
 import 'package:provider/provider.dart';
 
+import 'core/app_theme.dart';
 import 'home_page.dart';
 import 'latihan61_provider/cuti_notifier.dart';
 import 'latihan63_bloc/app_bloc_observer.dart';
@@ -32,34 +33,7 @@ class AplikasiHR extends StatelessWidget {
     return MaterialApp(
       title: 'Aplikasi HR',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF155EEF),
-          brightness: Brightness.light,
-        ),
-        scaffoldBackgroundColor: const Color(0xFFF4F7FC),
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFFF4F7FC),
-          surfaceTintColor: Colors.transparent,
-          foregroundColor: Color(0xFF101828),
-          centerTitle: false,
-        ),
-        cardTheme: const CardThemeData(
-          color: Colors.white,
-          surfaceTintColor: Colors.transparent,
-        ),
-        textTheme: const TextTheme(
-          headlineMedium: TextStyle(
-            color: Color(0xFF101828),
-            fontWeight: FontWeight.w700,
-          ),
-          titleMedium: TextStyle(
-            color: Color(0xFF101828),
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-      ),
+      theme: AppTheme.light,
       home: const HomePage(),
     );
   }

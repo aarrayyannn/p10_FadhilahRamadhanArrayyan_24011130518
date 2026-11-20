@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../core/app_theme.dart';
 import '../models/karyawan.dart';
 import 'gaji_providers.dart';
 
@@ -16,9 +17,9 @@ class GajiDetailPage extends ConsumerWidget {
     );
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7FC),
+      backgroundColor: AppColors.background,
       appBar: AppBar(
-        backgroundColor: const Color(0xFFF4F7FC),
+        backgroundColor: AppColors.background,
         surfaceTintColor: Colors.transparent,
         title: const Text(
           'Detail Gaji',
@@ -36,13 +37,13 @@ class GajiDetailPage extends ConsumerWidget {
                 const Icon(
                   Icons.error_outline_rounded,
                   size: 52,
-                  color: Color(0xFFF04438),
+                  color: AppColors.error,
                 ),
                 const SizedBox(height: 12),
                 Text(
                   '$error',
                   textAlign: TextAlign.center,
-                  style: const TextStyle(color: Color(0xFF475467)),
+                  style: const TextStyle(color: AppColors.muted),
                 ),
               ],
             ),
@@ -68,15 +69,11 @@ class GajiDetailPage extends ConsumerWidget {
                         width: double.infinity,
                         padding: EdgeInsets.all(wide ? 28 : 22),
                         decoration: BoxDecoration(
-                          gradient: const LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [Color(0xFF155EEF), Color(0xFF6941C6)],
-                          ),
+                          color: AppColors.accentDark,
                           borderRadius: BorderRadius.circular(24),
                           boxShadow: const [
                             BoxShadow(
-                              color: Color(0x33155EEF),
+                              color: Color(0x29202428),
                               blurRadius: 24,
                               offset: Offset(0, 10),
                             ),
@@ -97,7 +94,7 @@ class GajiDetailPage extends ConsumerWidget {
                                       ? k.nama.trim().split(' ').first[0]
                                       : '?',
                                   style: TextStyle(
-                                    color: const Color(0xFF155EEF),
+                                    color: AppColors.accentDark,
                                     fontSize: wide ? 30 : 24,
                                     fontWeight: FontWeight.w800,
                                   ),
@@ -163,8 +160,8 @@ class GajiDetailPage extends ConsumerWidget {
                           Expanded(
                             child: _DetailCard(
                               icon: Icons.apartment_rounded,
-                              iconColor: const Color(0xFF7F56D9),
-                              iconBackground: const Color(0xFFF4EBFF),
+                              iconColor: AppColors.accentDark,
+                              iconBackground: AppColors.surfaceMuted,
                               label: 'Divisi',
                               value: k.divisi,
                             ),
@@ -175,12 +172,8 @@ class GajiDetailPage extends ConsumerWidget {
                               icon: sudah
                                   ? Icons.check_circle_rounded
                                   : Icons.schedule_rounded,
-                              iconColor: sudah
-                                  ? const Color(0xFF039855)
-                                  : const Color(0xFFF79009),
-                              iconBackground: sudah
-                                  ? const Color(0xFFECFDF3)
-                                  : const Color(0xFFFFFAEB),
+                              iconColor: AppColors.accent,
+                              iconBackground: AppColors.surfaceMuted,
                               label: 'Status Penggajian',
                               value: sudah
                                   ? 'Sudah diproses'
@@ -196,10 +189,10 @@ class GajiDetailPage extends ConsumerWidget {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(18),
-                          border: Border.all(color: const Color(0xFFE4E7EC)),
+                          border: Border.all(color: AppColors.border),
                           boxShadow: const [
                             BoxShadow(
-                              color: Color(0x08101828),
+                              color: Color(0x0C202428),
                               blurRadius: 16,
                               offset: Offset(0, 6),
                             ),
@@ -211,12 +204,12 @@ class GajiDetailPage extends ConsumerWidget {
                               width: 48,
                               height: 48,
                               decoration: BoxDecoration(
-                                color: const Color(0xFFEAF2FF),
+                                color: AppColors.surfaceMuted,
                                 borderRadius: BorderRadius.circular(14),
                               ),
                               child: const Icon(
                                 Icons.payments_rounded,
-                                color: Color(0xFF155EEF),
+                                color: AppColors.accentDark,
                               ),
                             ),
                             const SizedBox(width: 16),
@@ -227,7 +220,7 @@ class GajiDetailPage extends ConsumerWidget {
                                   const Text(
                                     'Gaji Pokok',
                                     style: TextStyle(
-                                      color: Color(0xFF667085),
+                                      color: AppColors.muted,
                                       fontSize: 13,
                                       fontWeight: FontWeight.w600,
                                     ),
@@ -236,7 +229,7 @@ class GajiDetailPage extends ConsumerWidget {
                                   Text(
                                     formatRupiah(k.gajiPokok),
                                     style: const TextStyle(
-                                      color: Color(0xFF101828),
+                                      color: AppColors.ink,
                                       fontSize: 22,
                                       fontWeight: FontWeight.w800,
                                     ),
@@ -250,13 +243,13 @@ class GajiDetailPage extends ConsumerWidget {
                                 vertical: 6,
                               ),
                               decoration: BoxDecoration(
-                                color: const Color(0xFFF2F4F7),
+                                color: AppColors.surfaceMuted,
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               child: const Text(
                                 'Per bulan',
                                 style: TextStyle(
-                                  color: Color(0xFF475467),
+                                  color: AppColors.accent,
                                   fontSize: 12,
                                   fontWeight: FontWeight.w700,
                                 ),
@@ -300,10 +293,10 @@ class _DetailCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE4E7EC)),
+        border: Border.all(color: AppColors.border),
         boxShadow: const [
           BoxShadow(
-            color: Color(0x08101828),
+            color: Color(0x0C202428),
             blurRadius: 16,
             offset: Offset(0, 6),
           ),
@@ -331,7 +324,7 @@ class _DetailCard extends StatelessWidget {
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
-                    color: Color(0xFF667085),
+                    color: AppColors.muted,
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
                   ),
@@ -345,7 +338,7 @@ class _DetailCard extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(
-              color: Color(0xFF101828),
+              color: AppColors.ink,
               fontSize: 15,
               fontWeight: FontWeight.w800,
             ),

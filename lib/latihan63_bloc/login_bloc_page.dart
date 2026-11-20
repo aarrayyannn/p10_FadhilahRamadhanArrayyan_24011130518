@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../core/app_theme.dart';
 import 'auth_cubit.dart';
 import 'auth_state.dart';
 import 'home_bloc_page.dart';
@@ -27,7 +28,7 @@ class _LoginBlocPageState extends State<LoginBlocPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F7FC),
+      backgroundColor: AppColors.background,
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is Authenticated) {
@@ -37,7 +38,10 @@ class _LoginBlocPageState extends State<LoginBlocPage> {
             );
           } else if (state is AuthError) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.pesan), backgroundColor: Colors.red),
+              SnackBar(
+                content: Text(state.pesan),
+                backgroundColor: AppColors.error,
+              ),
             );
           }
         },
@@ -57,7 +61,7 @@ class _LoginBlocPageState extends State<LoginBlocPage> {
                         height: 280,
                         decoration: const BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Color(0x1A155EEF),
+                          color: Color(0x1A202428),
                         ),
                       ),
                     ),
@@ -73,11 +77,11 @@ class _LoginBlocPageState extends State<LoginBlocPage> {
                           child: Container(
                             constraints: const BoxConstraints(minHeight: 560),
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: AppColors.surface,
                               borderRadius: BorderRadius.circular(24),
                               boxShadow: const [
                                 BoxShadow(
-                                  color: Color(0x14101828),
+                                  color: Color(0x14202428),
                                   blurRadius: 40,
                                   offset: Offset(0, 16),
                                 ),
@@ -96,8 +100,8 @@ class _LoginBlocPageState extends State<LoginBlocPage> {
                                           begin: Alignment.topLeft,
                                           end: Alignment.bottomRight,
                                           colors: [
-                                            Color(0xFF155EEF),
-                                            Color(0xFF6941C6),
+                                            AppColors.accentDark,
+                                            AppColors.accent,
                                           ],
                                         ),
                                       ),
@@ -204,14 +208,14 @@ class _LoginBlocPageState extends State<LoginBlocPage> {
                                           style: TextStyle(
                                             fontSize: 28,
                                             fontWeight: FontWeight.w800,
-                                            color: Color(0xFF101828),
+                                            color: AppColors.ink,
                                           ),
                                         ),
                                         const SizedBox(height: 8),
                                         const Text(
                                           'Masuk untuk melanjutkan ke sistem HR',
                                           style: TextStyle(
-                                            color: Color(0xFF667085),
+                                            color: AppColors.muted,
                                           ),
                                         ),
                                         const SizedBox(height: 32),
@@ -219,7 +223,7 @@ class _LoginBlocPageState extends State<LoginBlocPage> {
                                           'Email',
                                           style: TextStyle(
                                             fontWeight: FontWeight.w700,
-                                            color: Color(0xFF344054),
+                                            color: AppColors.ink,
                                           ),
                                         ),
                                         const SizedBox(height: 8),
@@ -237,7 +241,7 @@ class _LoginBlocPageState extends State<LoginBlocPage> {
                                           'Password',
                                           style: TextStyle(
                                             fontWeight: FontWeight.w700,
-                                            color: Color(0xFF344054),
+                                            color: AppColors.ink,
                                           ),
                                         ),
                                         const SizedBox(height: 8),
@@ -265,7 +269,7 @@ class _LoginBlocPageState extends State<LoginBlocPage> {
                                                     ? Icons
                                                           .visibility_off_outlined
                                                     : Icons.visibility_outlined,
-                                                color: const Color(0xFF667085),
+                                                color: AppColors.muted,
                                               ),
                                             ),
                                           ),
@@ -290,9 +294,8 @@ class _LoginBlocPageState extends State<LoginBlocPage> {
                                                 borderRadius:
                                                     BorderRadius.circular(12),
                                               ),
-                                              backgroundColor: const Color(
-                                                0xFF155EEF,
-                                              ),
+                                              backgroundColor:
+                                                  AppColors.accentDark,
                                             ),
                                             child: loading
                                                 ? const SizedBox(
@@ -322,12 +325,12 @@ class _LoginBlocPageState extends State<LoginBlocPage> {
                                             vertical: 10,
                                           ),
                                           decoration: BoxDecoration(
-                                            color: const Color(0xFFF9FAFB),
+                                            color: AppColors.surfaceMuted,
                                             borderRadius: BorderRadius.circular(
                                               10,
                                             ),
                                             border: Border.all(
-                                              color: const Color(0xFFE4E7EC),
+                                              color: AppColors.border,
                                             ),
                                           ),
                                           child: const Text(
@@ -335,7 +338,7 @@ class _LoginBlocPageState extends State<LoginBlocPage> {
                                             textAlign: TextAlign.center,
                                             style: TextStyle(
                                               fontSize: 12,
-                                              color: Color(0xFF475467),
+                                              color: AppColors.accent,
                                             ),
                                           ),
                                         ),
@@ -366,19 +369,19 @@ class _LoginBlocPageState extends State<LoginBlocPage> {
   }) {
     return InputDecoration(
       hintText: hint,
-      hintStyle: const TextStyle(color: Color(0xFF98A2B3)),
-      prefixIcon: Icon(icon, color: const Color(0xFF667085), size: 20),
+      hintStyle: const TextStyle(color: AppColors.muted),
+      prefixIcon: Icon(icon, color: AppColors.muted, size: 20),
       suffixIcon: suffix,
       filled: true,
-      fillColor: const Color(0xFFF9FAFB),
+      fillColor: AppColors.surfaceMuted,
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 17),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: Color(0xFFD0D5DD)),
+        borderSide: const BorderSide(color: AppColors.border),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(color: Color(0xFF155EEF), width: 1.5),
+        borderSide: const BorderSide(color: AppColors.accentDark, width: 1.5),
       ),
     );
   }

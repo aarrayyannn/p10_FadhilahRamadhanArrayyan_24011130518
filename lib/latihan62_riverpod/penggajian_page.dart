@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../core/app_theme.dart';
 import '../models/karyawan.dart';
 import 'gaji_detail_page.dart';
 import 'gaji_providers.dart';
@@ -33,7 +34,7 @@ class PenggajianPage extends ConsumerWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.error_outline, color: Colors.red, size: 48),
+              const Icon(Icons.error_outline, color: AppColors.error, size: 48),
               const SizedBox(height: 8),
               Text('$error', textAlign: TextAlign.center),
               const SizedBox(height: 16),
@@ -44,22 +45,42 @@ class PenggajianPage extends ConsumerWidget {
             ],
           ),
         ),
-        data: (daftar) => ListView.builder(
+        data: (daftar) => ListView.separated(
+          padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
           itemCount: daftar.length,
+          separatorBuilder: (_, _) => const SizedBox(height: 10),
           itemBuilder: (context, index) {
             final k = daftar[index];
             final sudah = penggajian.diproses.contains(k.nik);
-            return ListTile(
-              leading: Icon(
-                sudah ? Icons.check_circle : Icons.schedule,
-                color: sudah ? Colors.green : null,
-              ),
-              title: Text(k.nama),
-              subtitle: Text('${k.divisi} • ${formatRupiah(k.gajiPokok)}'),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_) => GajiDetailPage(nik: k.nik)),
+            return Card(
+              child: ListTile(
+                contentPadding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
+                leading: CircleAvatar(
+                  backgroundColor: AppColors.surfaceMuted,
+                  foregroundColor: AppColors.ink,
+                  child: Icon(
+                    sudah ? Icons.check_rounded : Icons.schedule_rounded,
+                  ),
+                ),
+                title: Text(
+                  k.nama,
+                  style: const TextStyle(fontWeight: FontWeight.w700),
+                ),
+                subtitle: Padding(
+                  padding: const EdgeInsets.only(top: 4),
+                  child: Text(
+                    '${k.divisi} · ${formatRupiah(k.gajiPokok)}',
+                    style: const TextStyle(color: AppColors.muted),
+                  ),
+                ),
+                trailing: const Icon(Icons.arrow_forward_ios_rounded, size: 16),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => GajiDetailPage(nik: k.nik)),
+                ),
               ),
             );
           },
