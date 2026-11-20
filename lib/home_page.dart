@@ -190,7 +190,7 @@ class HomePage extends StatelessWidget {
                             icon: Icons.beach_access_rounded,
                             iconColor: const Color(0xFF7F56D9),
                             iconBackground: const Color(0xFFF4EBFF),
-                            title: 'Pengajuan Cuti',
+                            title: 'fadhilah',
                             subtitle: 'Kelola cuti karyawan',
                             tag: 'Provider',
                             onTap: () =>
